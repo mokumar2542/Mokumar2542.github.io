@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>mokumar2542 | Official</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:#704cff;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.25;
+    top:-120px;
+    left:-120px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:#00c8ff;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.15;
+    bottom:-120px;
+    right:-120px;
+    z-index:-1;
+}
+
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.1);
+    z-index:1000;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#9274ff;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:14px;
+}
+
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:110px 20px 60px;
+}
+
+.hero-content{
+    animation:fadeUp 1.2s ease;
+}
+
+
+/* PROFILE */
+
+.profile-box{
+    position:relative;
+    width:165px;
+    height:165px;
+    margin:0 auto 25px;
+}
+
+.profile{
+    width:165px;
+    height:165px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid white;
+    box-shadow:
+        0 0 20px #7655ff,
+        0 0 60px rgba(118,85,255,.4);
+
+    animation:float 4s ease-in-out infinite;
+}
+
+.photo-button{
+    position:absolute;
+    bottom:-5px;
+    right:-10px;
+    background:#8a68ff;
+    border:2px solid white;
+    color:white;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+}
+
+#photoInput{
+    display:none;
+}
+
+
+/* BADGE */
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:30px;
+    background:rgba(255,255,255,.05);
+    color:#bbb;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+
+/* HEADING */
+
+h1{
+    font-size:clamp(45px,9vw,90px);
+    line-height:1;
+}
+
+h1 span{
+    background:
+    linear-gradient(
+        90deg,
+        #8c68ff,
+        #42dfff,
+        #ffffff
+    );
+
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:620px;
+    margin:22px auto 30px;
+    color:#aaa;
+    font-size:17px;
+    line-height:1.6;
+}
+
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 25px;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+}
+
+.primary{
+    background:
+    linear-gradient(
+        90deg,
+        #7352ff,
+        #a17fff
+    );
+
+    box-shadow:
+    0 10px 30px
+    rgba(115,82,255,.35);
+}
+
+
+/* SECTIONS */
+
+section{
+    padding:90px 7%;
+}
+
+.title{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:45px;
+}
+
+.title span{
+    color:#8d6cff;
+}
+
+
+/* GLASS CARD */
+
+.card{
+    background:
+    rgba(255,255,255,.045);
+
+    border:
+    1px solid rgba(255,255,255,.1);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    padding:30px;
+
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+
+    border-color:#8064ff;
+
+    box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.35);
+}
+
+
+/* ABOUT */
+
+.about{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+}
+
+.about p{
+    color:#aaa;
+    line-height:1.8;
+    font-size:17px;
+}
+
+
+/* SOCIAL */
+
+.socials{
+    max-width:1000px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.social{
+    text-align:center;
+    text-decoration:none;
+    color:white;
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.social p{
+    color:#999;
+    margin-top:8px;
+}
+
+
+/* FEATURES */
+
+.features{
+    max-width:1050px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.feature{
+    text-align:center;
+}
+
+.feature p{
+    color:#999;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+
+/* CONTACT */
+
+.contact{
+    max-width:650px;
+    margin:auto;
+    text-align:center;
+}
+
+.contact p{
+    color:#999;
+    margin-bottom:25px;
+}
+
+
+/* FOOTER */
+
+footer{
+    padding:30px;
+    text-align:center;
+    border-top:
+    1px solid rgba(255,255,255,.1);
+
+    color:#777;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    nav{
+        padding:15px 20px;
+    }
+
+    nav div:last-child{
+        display:none;
+    }
+
+    .profile-box,
+    .profile{
+        width:125px;
+        height:125px;
+    }
+
+    section{
+        padding:70px 20px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .socials,
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        <span>@</span>mokumar2542
+    </div>
+
+    <div>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#social">
+            Social
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section
+id="home"
+class="hero">
+
+    <div class="hero-content">
+
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="profile-box">
+
+            <!-- Default profile -->
+            <img
+            id="profileImage"
+            class="profile"
+            src="https://via.placeholder.com/500x500/111111/ffffff?text=M"
+            alt="mokumar2542">
+
+            <!-- Photo button -->
+
+            <label
+            for="photoInput"
+            class="photo-button">
+
+                +
+
+            </label>
+
+            <input
+            type="file"
+            id="photoInput"
+            accept="image/*">
+
+        </div>
+
+
+        <div class="badge">
+
+            ✨ OFFICIAL PERSONAL WEBSITE
+
+        </div>
+
+
+        <h1>
+
+            I'm
+            <span>mokumar2542</span>
+
+        </h1>
+
+
+        <p>
+
+            Welcome to my official website.
+            Discover my profile, social media,
+            creative content and latest updates.
+
+        </p>
+
+
+        <div class="buttons">
+
+
+            <a
+            href="#about"
+            class="btn primary">
+
+                Explore
+
+            </a>
+
+
+            <a
+            href="https://instagram.com/mokumar2542"
+            target="_blank"
+            class="btn">
+
+                Instagram ↗
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <h2 class="title">
+
+        About
+        <span>Me</span>
+
+    </h2>
+
+
+    <div class="card about">
+
+        <p>
+
+            Hey! I'm
+            <strong>mokumar2542</strong>.
+
+            Welcome to my official digital space.
+
+            Here you can find my social profiles,
+            creative content and latest updates.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- SOCIAL -->
+
+<section id="social">
+
+    <h2 class="title">
+
+        My
+        <span>Socials</span>
+
+    </h2>
+
+
+    <div class="socials">
+
+
+        <a
+        class="card social"
+        href="https://instagram.com/mokumar2542"
+        target="_blank">
+
+            <div class="icon">
+                📸
+            </div>
+
+            <h3>
+                Instagram
+            </h3>
+
+            <p>
+                @mokumar2542
+            </p>
+
+        </a>
+
+
+        <div class="card social">
+
+            <div class="icon">
+                🌐
+            </div>
+
+            <h3>
+                Website
+            </h3>
+
+            <p>
+                Official Profile
+            </p>
+
+        </div>
+
+
+        <div class="card social">
+
+            <div class="icon">
+                ✨
+            </div>
+
+            <h3>
+                Updates
+            </h3>
+
+            <p>
+                Coming Soon
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FEATURES -->
+
+<section>
+
+    <h2 class="title">
+
+        Explore
+        <span>More</span>
+
+    </h2>
+
+
+    <div class="features">
+
+
+        <div class="card feature">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h3>
+                My Profile
+            </h3>
+
+            <p>
+                Learn more about me
+                and my journey.
+            </p>
+
+        </div>
+
+
+        <div class="card feature">
+
+            <div class="icon">
+                📱
+            </div>
+
+            <h3>
+                Social Media
+            </h3>
+
+            <p>
+                Connect with me
+                through social platforms.
+            </p>
+
+        </div>
+
+
+        <div class="card feature">
+
+            <div class="icon">
+                🚀
+            </div>
+
+            <h3>
+                Latest Updates
+            </h3>
+
+            <p>
+                New content and
+                projects coming soon.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <h2 class="title">
+
+        Let's
+        <span>Connect</span>
+
+    </h2>
+
+
+    <div class="card contact">
+
+        <p>
+
+            Follow me on Instagram
+            and stay connected.
+
+        </p>
+
+
+        <a
+        href="https://instagram.com/mokumar2542"
+        target="_blank"
+        class="btn primary">
+
+            Follow @mokumar2542
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 mokumar2542
+    · All Rights Reserved.
+
+</footer>
+
+
+
+<!-- PHOTO UPLOAD SCRIPT -->
+
+<script>
+
+const photoInput =
+document.getElementById("photoInput");
+
+const profileImage =
+document.getElementById("profileImage");
+
+
+photoInput.addEventListener(
+"change",
+function(){
+
+    const file =
+    this.files[0];
+
+    if(file){
+
+        const reader =
+        new FileReader();
+
+        reader.onload =
+        function(e){
+
+            profileImage.src =
+            e.target.result;
+
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+
+});
+
+
+
+/* SCROLL ANIMATION */
+
+const cards =
+document.querySelectorAll(".card");
+
+
+const observer =
+new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach(
+        entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.style.animation =
+                "fadeUp .8s ease forwards";
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.15
+    }
+
+);
+
+
+cards.forEach(
+card => observer.observe(card)
+);
+
+</script>
+
+
+</body>
+</html>
